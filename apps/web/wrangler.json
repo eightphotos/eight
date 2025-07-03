@@ -1,0 +1,11 @@
+
+{
+  "$schema": "https://developers.cloudflare.com/workers/wrangler/config-schema.json",
+  "name": "eight-pages",
+  "compatibility_date": "2025-07-03",
+  "compatibility_flags": ["nodejs_compat"],
+  "pages_build_output_dir": ".open-next/assets",
+  "vars": {
+    "MY_ENV_VAR": "value"
+  }
+}
