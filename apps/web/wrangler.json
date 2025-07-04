@@ -1,11 +1,27 @@
-
 {
-  "$schema": "https://developers.cloudflare.com/workers/wrangler/config-schema.json",
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
   "name": "eight-pages",
-  "compatibility_date": "2025-07-03",
-  "compatibility_flags": ["nodejs_compat"],
-  "pages_build_output_dir": ".open-next/assets",
-  "vars": {
-    "MY_ENV_VAR": "value"
-  }
+  "compatibility_date": "2024-12-30",
+  "compatibility_flags": [
+    "next_on_pages",
+    "next_on_pages_r2",
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS",
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "eight-pages-worker",
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "R2_BUCKET",
+      "bucket_name": "eight-photos-bucket",
+      "preview_bucket_name": "eight-pages-r2-preview",
+    },
+  ],
 }
