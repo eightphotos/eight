@@ -5,17 +5,16 @@
   "compatibility_date": "2025-07-04",
   "compatibility_flags": [
     "nodejs_compat",
-    "global_fetch_strictly_public",
+    "global_fetch_strictly_public"
   ],
   "assets": {
-    "directory": ".open-next/assets",
-    "binding": "ASSETS",
+    "directory": ".open-next/assets"
   },
   "r2_buckets": [
     {
       "binding": "NEXT_INC_CACHE_R2_BUCKET",
       "bucket_name": "eight-photos-bucket",
-      "preview_bucket_name": "eight-pages-r2-preview",
-    },
-  ],
+      "preview_bucket_name": "eight-pages-r2-preview"
+    }
+  ]
 }
