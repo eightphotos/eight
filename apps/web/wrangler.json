@@ -4,22 +4,16 @@
   "name": "eight-pages",
   "compatibility_date": "2024-12-30",
   "compatibility_flags": [
-    "next_on_pages",
-    "next_on_pages_r2",
+    "nodejs_compat",
+    "global_fetch_strictly_public",
   ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS",
   },
-  "services": [
-    {
-      "binding": "WORKER_SELF_REFERENCE",
-      "service": "eight-pages-worker",
-    },
-  ],
   "r2_buckets": [
     {
-      "binding": "R2_BUCKET",
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
       "bucket_name": "eight-photos-bucket",
       "preview_bucket_name": "eight-pages-r2-preview",
     },
