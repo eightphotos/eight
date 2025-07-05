@@ -61,7 +61,7 @@ export function WaitlistForm() {
       <Button
         type="submit"
         disabled={isSubmitting || !email}
-        className="px-4 py-6 bg-black text-white font-medium rounded-2xl"
+        className="px-4 py-6 backdrop-blur-md text-black font-medium rounded-2xl border border-gray-200 hover:bg-gray-200 transition-colors duration-300"
       >
         {isSubmitting ? "Joining..." : "Join Waitlist"}
       </Button>

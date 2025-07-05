@@ -16,11 +16,11 @@ export function WaitlistStats() {
 
   return (
     <div className="flex items-center justify-center gap-2 text-gray-600 mt-6">
-      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+      {/* <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
       <span className="text-sm md:text-base">
         <span className="font-medium text-black">{count.toLocaleString()}</span>{" "}
         people already joined the waitlist
-      </span>
+      </span> */}
     </div>
   )
 } 
