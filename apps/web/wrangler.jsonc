@@ -8,7 +8,7 @@
     "global_fetch_strictly_public"
   ],
   "assets": {
-    "directory": ".open-next/assets"
+    "directory": "./.open-next/assets"
   },
   "r2_buckets": [
     {
