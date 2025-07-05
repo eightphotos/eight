@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "main": ".open-next/worker.js",
+  "main": "./.open-next/worker.js",
   "name": "eight-pages",
   "compatibility_date": "2025-07-04",
   "compatibility_flags": [
