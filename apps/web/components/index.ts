@@ -1,0 +1,6 @@
+export { Header } from "./header"
+export { Background } from "./background"
+export { Hero } from "./hero"
+export { WaitlistForm } from "./waitlist-form"
+export { WaitlistStats } from "./waitlist-stats"
+export { DemoSection } from "./demo-section" 

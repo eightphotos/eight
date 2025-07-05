@@ -1,12 +1,29 @@
-import { Button } from "@workspace/ui/components/button"
+import { Header } from "@/components/header"
+import { Background } from "@/components/background"
+import { Hero } from "@/components/hero"
+import { WaitlistForm } from "@/components/waitlist-form"
+import { WaitlistStats } from "@/components/waitlist-stats"
+import { DemoSection } from "@/components/demo-section"
 
 export default function Page() {
   return (
-    <div className="flex items-center justify-center min-h-svh">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-2xl font-bold">Eight Photos</h1>
-        <Button size="sm">v0</Button>
-      </div>
+    <div className="min-h-screen relative">
+      <Background />
+      <Header isScrolled={false} />
+      
+      <main>
+        {/* Hero Section */}
+        <div className="relative">
+          <Hero />
+          <div className="absolute bottom-32 left-0 right-0 px-6">
+            <WaitlistForm />
+            <WaitlistStats />
+          </div>
+        </div>
+        
+        {/* Demo Section
+        <DemoSection /> */}
+      </main>
     </div>
   )
 }
