@@ -15,12 +15,12 @@ const fontMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Nimbus - Cloud you can actually trust",
-  description: "Take charge of your files with a cloud that's open, secure, and built for you. Join the waitlist today.",
-  keywords: ["cloud storage", "file management", "secure cloud", "privacy"],
-  authors: [{ name: "Nimbus Team" }],
-  creator: "Nimbus",
-  publisher: "Nimbus",
+  title: "Eight - Photos you can actually search",
+  description: "Find your memories instantly with AI-powered photo search that actually understands what's in your pictures. Join the waitlist today.",
+  keywords: ["photo search", "AI photos", "image search", "photo management", "visual search"],
+  authors: [{ name: "Eight Team" }],
+  creator: "Eight",
+  publisher: "Eight",
   formatDetection: {
     email: false,
     address: false,
