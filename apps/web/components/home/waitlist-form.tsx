@@ -113,13 +113,13 @@ export function WaitlistForm() {
           </Alert>
         )}
         
-        <div className="flex items-center justify-center gap-3 pt-4 text-gray-600">
+        <div className="flex items-center justify-center gap-3 pt-4 text-gray-900">
           <div className="relative">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
             <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75" />
           </div>
           <span className="text-sm">
-            Join <span className="font-semibold text-gray-900">{isSubmitted ? 128 : 127}</span> others waiting for early access
+            Join <span className="font-semibold text-black">{isSubmitted ? 128 : 127}</span> others waiting for early access
           </span>
         </div>
       </form>

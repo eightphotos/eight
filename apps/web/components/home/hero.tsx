@@ -16,7 +16,7 @@ export function Hero() {
           alt="Hero lower section"
           fill
           style={{ objectFit: "cover" }}
-          className="w-full h-auto translate-y-32 md:translate-y-72 lg:translate-y-96"
+          className="w-full h-auto translate-y-32 md:translate-y-72 lg:translate-y-2/3"
           priority
         />
       </div>
