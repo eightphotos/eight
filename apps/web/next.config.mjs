@@ -2,6 +2,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   transpilePackages: ["@workspace/ui"],
+  images: {
+    unoptimized: true, // 💥 disables the image optimization route
+  },
 }
 
 
