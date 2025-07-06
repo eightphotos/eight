@@ -18,7 +18,7 @@ export function Header() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="ghost" aria-label="Discord" className="h-9 w-9">
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://discord.gg/eightphotos" target="_blank" rel="noopener noreferrer">
                 <Discord className="h-5 w-5" />
               </a>
             </Button>
@@ -28,7 +28,7 @@ export function Header() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="ghost" asChild className="h-9 w-9">
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/eightphotos/eight" target="_blank" rel="noopener noreferrer">
                 <GitHub className="h-5 w-5" />
               </a>
             </Button>
@@ -38,7 +38,7 @@ export function Header() {
         <Tooltip>
           <TooltipTrigger asChild>
             <Button variant="ghost" aria-label="X (Twitter)" className="h-9 w-9">
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/breathingcodes" target="_blank" rel="noopener noreferrer">
                 <XPlatform className="h-5 w-5" />
               </a>
             </Button>
