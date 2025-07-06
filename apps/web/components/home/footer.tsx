@@ -1,5 +1,5 @@
-import { EightLogo, XPlatform } from "@/components/icons"
-import Link from "next/link"
+import { EightLogo, XPlatform } from "@/components/icons";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -17,10 +17,13 @@ export function Footer() {
         </a>
       </div>
 
-      <Link href="/" className="flex items-center gap-2 font-bold transition-colors hover:text-gray-700">
+      <Link
+        href="/"
+        className="flex items-center gap-2 font-bold transition-colors hover:text-gray-700"
+      >
         <EightLogo className="h-6 w-6" aria-label="Eight Logo" />
         <span className="hidden md:inline">Eight</span>
       </Link>
     </footer>
-  )
+  );
 }
