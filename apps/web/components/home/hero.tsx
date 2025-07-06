@@ -11,11 +11,13 @@ export function Hero() {
     <div className="min-h-screen relative overflow-hidden">
       
       {/* Hero Lower Image positioned behind text */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pt-208">
-        <Image 
+      <div className="absolute inset-0 z-0 flex items-end justify-center pointer-events-none">
+        <Image
           src={HeroLowerImage}
           alt="Hero lower section"
-          className="w-full h-auto"
+          fill
+          style={{ objectFit: "cover" }}
+          className="w-full h-auto translate-y-32 md:translate-y-72 lg:translate-y-96"
           priority
         />
       </div>
