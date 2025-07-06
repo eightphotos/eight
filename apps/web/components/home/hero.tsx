@@ -3,7 +3,6 @@
 import { Header } from "./header"
 import { WaitlistForm } from "./waitlist-form"
 import Image from "next/image"
-import HeroLowerImage from "@/public/images/lower_bg.png"
 import { Footer } from "./footer"
 
 export function Hero() {
@@ -13,7 +12,7 @@ export function Hero() {
       {/* Hero Lower Image positioned behind text */}
       <div className="absolute inset-0 z-0 flex items-end justify-center pointer-events-none">
         <Image
-          src={HeroLowerImage}
+          src="/images/lower_bg.png"
           alt="Hero lower section"
           fill
           style={{ objectFit: "cover" }}
