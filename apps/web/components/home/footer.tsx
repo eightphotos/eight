@@ -7,7 +7,7 @@ export function Footer() {
       <div className="flex items-center gap-2 text-sm">
         <span className="hidden sm:inline">Made by</span>
         <a
-          href="https://twitter.com/breathingcode"
+          href="https://twitter.com/breathingcodes"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-1 font-medium transition-colors hover:text-gray-700"
