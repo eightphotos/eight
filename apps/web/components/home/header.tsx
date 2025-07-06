@@ -25,7 +25,7 @@ export function Header() {
           <TooltipTrigger asChild>
             <Button variant="ghost" aria-label="Discord" className="h-9 w-9">
               <a
-                href="https://discord.gg/eightphotos"
+                href="https://discord.gg/7HRhwAsX"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -57,7 +57,7 @@ export function Header() {
               className="h-9 w-9"
             >
               <a
-                href="https://x.com/breathingcodes"
+                href="https://x.com/eightdotphotos"
                 target="_blank"
                 rel="noopener noreferrer"
               >
