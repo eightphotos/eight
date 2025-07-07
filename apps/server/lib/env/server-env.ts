@@ -19,11 +19,11 @@ export const serverEnv = createEnv({
         "BACKEND_URL must be a valid URL (e.g., https://api.yourdomain.com).",
       ),
 
-    PORT: z
+    SERVER_PORT: z
       .string()
       .transform((val) => parseInt(val, 10))
       .pipe(z.number().min(1).max(65535))
-      .default("3000"),
+      .default("1284"),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

@@ -14,7 +14,7 @@ export function Header() {
       <h1>
         <Link
           href="/"
-          className="flex items-center gap-2 font-bold transition-colors hover:text-gray-700"
+          className="flex items-center gap-2 font-bold transition-colors hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
         >
           <EightLogo className="h-9 w-9" aria-label="Eight Logo" />
           <span className="hidden md:inline">Eight</span>

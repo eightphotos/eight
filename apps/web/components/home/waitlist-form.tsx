@@ -217,12 +217,12 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
           </Button>
         </div>
       </form>
-      <div className="flex items-center justify-center gap-3 pt-4 text-gray-900">
+      <div className="flex items-center justify-center gap-3 pt-4 text-gray-900 dark:text-white">
         <div className="relative">
           <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75" />
         </div>
-        <span className="text-sm">
+        <span className="text-sm dark:text-white">
           <NumberFlow value={waitlist.count} /> people already joined the
           waitlist
         </span>

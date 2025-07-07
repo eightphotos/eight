@@ -1,73 +1,69 @@
-import { zValidator } from "@hono/zod-validator";
 import { waitlist } from "@eight/db/schema";
 import { emailSchema } from "@/validators";
 import { count, eq } from "drizzle-orm";
-import type { Context } from "hono";
 import { db } from "@eight/db";
 import { nanoid } from "nanoid";
-import { Hono } from "hono";
+import { z } from "zod";
 
-const waitlistRouter = new Hono();
+import express, { Request, Response } from "express";
+
+const waitlistRouter = express.Router();
+
+waitlistRouter.use(express.json());
 
 waitlistRouter.post(
   "/join",
-  zValidator("json", emailSchema),
-  async (c: Context) => {
+  async (req: Request, res: Response) => {
     try {
-      const { email } = c.req.valid("json");
+      if (!req.body || typeof req.body.email !== 'string') {
+        return res.status(400).json({
+          success: false,
+          error: "Email is required",
+        });
+      }
 
+      const { email } = req.body as { email: string };
+      
       const existing = await db
         .select()
         .from(waitlist)
         .where(eq(waitlist.email, email.toLowerCase().trim()));
 
       if (existing.length > 0) {
-        return c.json(
-          {
-            success: false,
-            error: "Email already exists",
-          },
-          400,
-        );
+        return res.status(400).json({
+          success: false,
+          error: "Email already exists",
+        });
       }
 
       await db.insert(waitlist).values({
         id: nanoid(),
-        email,
+        email: email.toLowerCase().trim(),
       });
 
-      return c.json(
-        {
-          success: true,
-        },
-        201,
-      );
+      res.status(201).json({
+        success: true,
+      });
     } catch (error) {
       console.error("Error adding email to waitlist:", error);
-      return c.json(
-        {
-          success: false,
-          error: "Internal server error",
-        },
-        500,
-      );
+      res.status(500).json({
+        success: false,
+        error: "Internal server error",
+      });
     }
   },
 );
 
-waitlistRouter.get("/count", async (c: Context) => {
+waitlistRouter.get("/count", async (req: Request, res: Response) => {
   try {
     const result = await db.select({ count: count() }).from(waitlist);
-    return c.json({ count: result[0]?.count || 0 });
+    res.json({ count: result[0]?.count || 0 });
   } catch (error) {
     console.error("Error getting waitlist count:", error);
-    return c.json(
-      {
-        success: false,
-        error: "Internal server error",
-      },
-      500,
-    );
+    res.status(500).json({
+      success: false, 
+      error: "Internal server error",
+    });
   }
 });
 
