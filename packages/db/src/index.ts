@@ -1,6 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config(); 
 import { drizzle } from "drizzle-orm/node-postgres";
 import schema from "../schema.js";
 import { Pool } from "pg";
+
+
 
 // This implementation is a copy of the one done in Nibmus Storage. https://github.com/nimbusdotstorage/Nimbus/blob/main/packages/db/src/index.ts
 
