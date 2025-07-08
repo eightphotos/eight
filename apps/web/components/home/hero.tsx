@@ -1,14 +1,13 @@
-"use client"
+"use client";
 
-import { Header } from "./header"
-import { WaitlistForm } from "./waitlist-form"
-import Image from "next/image"
-import { Footer } from "./footer"
+import { Header } from "./header";
+import { WaitlistForm } from "./waitlist-form";
+import Image from "next/image";
+import { Footer } from "./footer";
 
 export function Hero() {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      
       {/* Hero Lower Image positioned behind text */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pt-208">
         <Image
@@ -23,7 +22,7 @@ export function Hero() {
 
       <div className="font-sans flex w-full flex-1 flex-col items-center justify-center gap-12 overflow-hidden px-4 py-40 md:gap-16 relative z-10">
         <Header />
-        
+
         <div className="w-full">
           <div className="relative flex w-full flex-col gap-12 px-4 md:px-6">
             <div className="relative mx-auto w-full max-w-3xl sm:max-w-4xl md:max-w-5xl lg:max-w-6xl">
@@ -42,7 +41,8 @@ export function Hero() {
                   </span>
                 </h1>
                 <p className="mx-auto max-w-lg text-sm leading-tight sm:text-[16px]">
-                  Find your memories instantly with AI-powered photo search that actually understands what&apos;s in your pictures.
+                  Find your memories instantly with AI-powered photo search that
+                  actually understands what&apos;s in your pictures.
                 </p>
               </div>
             </div>
@@ -52,5 +52,5 @@ export function Hero() {
       </div>
       <Footer />
     </div>
-  )
-} 
+  );
+}

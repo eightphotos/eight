@@ -1,14 +1,14 @@
-import { 
-  Folder, 
-  Image, 
-  Video, 
-  Music, 
-  Share, 
-  Plus, 
+import {
+  Folder,
+  Image,
+  Video,
+  Music,
+  Share,
+  Plus,
   Filter,
   MoreHorizontal,
-  Search
-} from "lucide-react"
+  Search,
+} from "lucide-react";
 
 export function DemoSection() {
   const files = [
@@ -19,43 +19,43 @@ export function DemoSection() {
       owner: "You",
       size: "—",
       tags: ["Work"],
-      color: "blue"
+      color: "blue",
     },
     {
       name: "Videos",
-      type: "folder", 
+      type: "folder",
       date: "Jun 3, 2025",
       owner: "You",
       size: "—",
       tags: ["Personal", "Important"],
-      color: "green"
+      color: "green",
     },
     {
       name: "Music",
       type: "folder",
       date: "Dec 31, 2024",
-      owner: "You", 
+      owner: "You",
       size: "—",
       tags: [],
-      color: "purple"
-    }
-  ]
+      color: "purple",
+    },
+  ];
 
   const getFileIcon = (type: string, color: string) => {
-    const iconProps = { size: 20, className: `text-${color}-500` }
+    const iconProps = { size: 20, className: `text-${color}-500` };
     switch (type) {
       case "folder":
-        return <Folder {...iconProps} />
+        return <Folder {...iconProps} />;
       case "image":
-        return <Image {...iconProps} />
+        return <Image {...iconProps} />;
       case "video":
-        return <Video {...iconProps} />
+        return <Video {...iconProps} />;
       case "music":
-        return <Music {...iconProps} />
+        return <Music {...iconProps} />;
       default:
-        return <Folder {...iconProps} />
+        return <Folder {...iconProps} />;
     }
-  }
+  };
 
   return (
     <section className="relative z-10 px-6 py-12">
@@ -94,10 +94,16 @@ export function DemoSection() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <button className="text-gray-400 hover:text-white p-2 rounded-md hover:bg-gray-800 transition-colors" aria-label="Filter files">
+              <button
+                className="text-gray-400 hover:text-white p-2 rounded-md hover:bg-gray-800 transition-colors"
+                aria-label="Filter files"
+              >
                 <Filter size={16} />
               </button>
-              <button className="text-gray-400 hover:text-white p-2 rounded-md hover:bg-gray-800 transition-colors" aria-label="Share files">
+              <button
+                className="text-gray-400 hover:text-white p-2 rounded-md hover:bg-gray-800 transition-colors"
+                aria-label="Share files"
+              >
                 <Share size={16} />
               </button>
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-md text-sm font-medium transition-colors flex items-center gap-1">
@@ -128,21 +134,29 @@ export function DemoSection() {
                 <div className="grid grid-cols-12 gap-4 items-center">
                   <div className="col-span-4 flex items-center gap-3">
                     {getFileIcon(file.type, file.color)}
-                    <span className="text-white text-sm font-medium">{file.name}</span>
+                    <span className="text-white text-sm font-medium">
+                      {file.name}
+                    </span>
                   </div>
-                  <div className="col-span-2 text-gray-400 text-sm">{file.date}</div>
-                  <div className="col-span-2 text-gray-400 text-sm">{file.owner}</div>
-                  <div className="col-span-2 text-gray-400 text-sm">{file.size}</div>
+                  <div className="col-span-2 text-gray-400 text-sm">
+                    {file.date}
+                  </div>
+                  <div className="col-span-2 text-gray-400 text-sm">
+                    {file.owner}
+                  </div>
+                  <div className="col-span-2 text-gray-400 text-sm">
+                    {file.size}
+                  </div>
                   <div className="col-span-2 flex items-center gap-2">
                     {file.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
                         className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          tag === "Work" 
-                            ? "bg-blue-100 text-blue-800" 
+                          tag === "Work"
+                            ? "bg-blue-100 text-blue-800"
                             : tag === "Personal"
-                            ? "bg-green-100 text-green-800"
-                            : "bg-red-100 text-red-800"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-red-100 text-red-800"
                         }`}
                       >
                         {tag}
@@ -156,5 +170,5 @@ export function DemoSection() {
         </div>
       </div>
     </section>
-  )
-} 
+  );
+}

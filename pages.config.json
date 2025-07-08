@@ -1,0 +1,5 @@
+{
+  "buildCommand": "pnpm install --no-frozen-lockfile && pnpm run build",
+  "outputDirectory": "apps/web/.open-next",
+  "nodeVersion": "20"
+} 

@@ -1,0 +1,36 @@
+{
+  "name": "@eight/db",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "module": "src/index.ts",
+	"scripts": {
+		"build": "pnpm build src/index.ts --outdir dist --target pnpm",
+		"generate": "pnpm drizzle-kit generate --config=drizzle.config.ts",
+		"migrate": "pnpm drizzle-kit migrate --config=drizzle.config.ts",
+		"push": "pnpm drizzle-kit push --config=drizzle.config.ts",
+		"studio": "pnpm drizzle-kit studio --config=drizzle.config.ts",
+		"docker:up": "docker compose up -d",
+		"docker:down": "docker compose down",
+		"docker:remove": "docker compose down --rmi local -v",
+		"docker:reset": "pnpm run docker:remove && pnpm run docker:up"
+	},
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./src/index.ts"
+    },
+    "./schema": {
+      "types": "./schema.ts",
+      "import": "./schema.ts"
+    }
+  },
+  "dependencies": {
+    "@types/pg": "^8.15.4",
+    "dotenv": "^16.4.5",
+    "drizzle-kit": "^0.31.4",
+    "drizzle-orm": "^0.44.2",
+    "pg": "^8.16.3",
+    "typescript": "^5.8.3"
+  }
+}
