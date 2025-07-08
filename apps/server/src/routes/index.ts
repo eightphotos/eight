@@ -1,8 +1,8 @@
-import express from "express";
-import waitlistRouter from "@/routes/waitlist";
+import { Hono } from "hono";
+import waitListRoutes from "@/routes/waitlist";
 
-const router = express.Router();
+const router = new Hono();
 
-router.use("/waitlist", waitlistRouter);
+router.route("/waitlist", waitListRoutes);
 
 export default router;
