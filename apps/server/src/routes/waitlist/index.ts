@@ -3,18 +3,23 @@ import { waitlist } from "@eight/db/schema";
 import { emailSchema } from "@/validators";
 import { count, eq } from "drizzle-orm";
 import type { Context } from "hono";
-import { db } from "@eight/db";
+import type { DB } from "@eight/db";
+import type { z } from "zod";
 import { nanoid } from "nanoid";
 import { Hono } from "hono";
 
-const waitlistRouter = new Hono();
+type Variables = { Variables: { db: DB } };
+const waitlistRouter = new Hono<Variables>();
 
 waitlistRouter.post(
   "/join",
   zValidator("json", emailSchema),
-  async (c: Context) => {
+  async (c) => {
     try {
-      const { email } = c.req.valid("json");
+      const body = c.req.valid("json") as z.infer<typeof emailSchema>;
+      const email = body.email;
+
+      const db = c.get("db") as DB;
 
       const existing = await db
         .select()
@@ -57,6 +62,7 @@ waitlistRouter.post(
 
 waitlistRouter.get("/count", async (c: Context) => {
   try {
+    const db = c.get("db") as DB;
     const result = await db.select({ count: count() }).from(waitlist);
     return c.json({ count: result[0]?.count || 0 });
   } catch (error) {

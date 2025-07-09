@@ -14,7 +14,8 @@
     "db:down": "pnpm --filter @eight/db run docker:down",
     "db:reset": "pnpm --filter @eight/db run docker:reset",
     "db:push": "pnpm --filter @eight/db run push",
-    "db:studio": "pnpm --filter @eight/db run studio"
+    "db:studio": "pnpm --filter @eight/db run studio",
+    "build:server": "pnpm --filter @eight/server build"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",

@@ -1,0 +1,48 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eight-server",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-07-08",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [{"pattern": "api.eight.photos/*", "custom_domain": true}],
+  "env": {
+    "development": {
+      "vars": {
+        "NODE_ENV": "development",
+        "BACKEND_URL": "http://localhost:1284",
+        "FRONTEND_URL": "http://localhost:3000",
+        "NEXT_PUBLIC_BACKEND_URL": "http://localhost:1284",
+        "NEXT_PUBLIC_FRONTEND_URL": "http://localhost:3000",
+        "NEXT_PUBLIC_CALLBACK_URL": "http://localhost:3000/app"
+      },
+      "hyperdrive": [
+        {
+          "binding": "HYPERDRIVE",
+          "id": "828c4d4cd7f64a3f996acb3d4d8dfd87",
+          "localConnectionString": "postgres://postgres:postgres@localhost:5432/eight"
+        }
+      ]
+    },
+    "production": {
+      "vars": {
+        "NODE_ENV": "production",
+        "BACKEND_URL": "https://api.eight.photos",
+        "FRONTEND_URL": "https://eight.photos",
+        "NEXT_PUBLIC_BACKEND_URL": "https://api.eight.photos",
+        "NEXT_PUBLIC_FRONTEND_URL": "https://eight.photos",
+        "NEXT_PUBLIC_CALLBACK_URL": "https://eight.photos/app"
+      },
+      "hyperdrive": [
+        {
+          "binding": "HYPERDRIVE",
+          "id": "828c4d4cd7f64a3f996acb3d4d8dfd87"
+        }
+      ]
+    }
+  }
+}
+

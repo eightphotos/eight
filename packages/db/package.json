@@ -4,17 +4,17 @@
   "type": "module",
   "private": true,
   "module": "src/index.ts",
-	"scripts": {
-		"build": "pnpm build src/index.ts",
-		"generate": "pnpm drizzle-kit generate --config=drizzle.config.ts",
-		"migrate": "pnpm drizzle-kit migrate --config=drizzle.config.ts",
-		"push": "pnpm drizzle-kit push --config=drizzle.config.ts",
-		"studio": "pnpm drizzle-kit studio --config=drizzle.config.ts",
-		"docker:up": "docker compose up -d",
-		"docker:down": "docker compose down",
-		"docker:remove": "docker compose down --rmi local -v",
-		"docker:reset": "pnpm run docker:remove && pnpm run docker:up"
-	},
+  "scripts": {
+    "build": "tsc src/index.ts",
+    "generate": "pnpm drizzle-kit generate --config=drizzle.config.ts",
+    "migrate": "pnpm drizzle-kit migrate --config=drizzle.config.ts",
+    "push": "pnpm drizzle-kit push --config=drizzle.config.ts",
+    "studio": "pnpm drizzle-kit studio --config=drizzle.config.ts",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:remove": "docker compose down --rmi local -v",
+    "docker:reset": "pnpm run docker:remove && pnpm run docker:up"
+  },
   "exports": {
     ".": {
       "types": "./src/index.ts",
@@ -31,6 +31,7 @@
     "drizzle-kit": "^0.31.4",
     "drizzle-orm": "^0.44.2",
     "pg": "^8.16.3",
+    "postgres": "^3.4.7",
     "typescript": "^5.8.3"
   }
 }
