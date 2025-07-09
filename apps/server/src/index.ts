@@ -5,7 +5,7 @@ import routes from "@/routes/index";
 import { createDb, type DB } from "@eight/db";
 import { cors } from "hono/cors";
 import { serverEnv } from "@/lib/env/server-env";
-import { env } from 'cloudflare:workers';
+
 interface Env {
   HYPERDRIVE: {
     connectionString: string;
@@ -16,13 +16,18 @@ export interface ReqVariables {
 }
 
 const app = new Hono<{ Variables: ReqVariables; Bindings: Env }>();
-const connString = env.HYPERDRIVE.connectionString;
-if(process.env.NODE_ENV !== "production") {
-    const connString = process.env.DATABASE_URL;
-  console.log(`Using connection string: ${connString}`);
-}else{
-  const connString = env.HYPERDRIVE.connectionString;
-}
+
+
+const dbCache = new Map<string, DB>();
+const getDb = (connString: string): DB => {
+  const cached = dbCache.get(connString);
+  if (cached) return cached;
+  const { db } = createDb(connString);
+  dbCache.set(connString, db);
+  return db;
+};
+
+const port = serverEnv.SERVER_PORT ?? 1284;
 
 app.use(
   cors({
@@ -35,8 +40,21 @@ app.use(
 );
 
 app.use("*", async (c, next) => {
-  const connString = c.env.HYPERDRIVE.connectionString;
-  const { db } = createDb(connString);
+  /*
+   * In development we rely on a local DATABASE_URL (loaded via ./env and validated by serverEnv).
+   * In production, Cloudflare provides a Hyperdrive binding whose connectionString we use instead.
+   */
+  const connectionString =
+    process.env.NODE_ENV !== "production"
+      ? serverEnv.DATABASE_URL
+      : c.env.HYPERDRIVE.connectionString;
+
+  if (!connectionString) {
+    console.error("Database connection string is not defined.");
+    return c.text("Internal Server Error", 500);
+  }
+
+  const db = getDb(connectionString);
   c.set("db", db);
   await next();
 });
@@ -44,7 +62,6 @@ app.use("*", async (c, next) => {
 
 
 app.route("/api", routes);
-const port = 1284;
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`🚀 Server starting on http://localhost:${port}`);
