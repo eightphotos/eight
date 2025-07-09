@@ -1,7 +1,7 @@
 import { zValidator } from "@hono/zod-validator";
 import { waitlist } from "@eight/db/schema";
 import { emailSchema } from "@/validators";
-import { count, eq } from "drizzle-orm";
+import { count } from "drizzle-orm";
 import type { Context } from "hono";
 import type { DB } from "@eight/db";
 import type { z } from "zod";
@@ -17,16 +17,21 @@ waitlistRouter.post(
   async (c) => {
     try {
       const body = c.req.valid("json") as z.infer<typeof emailSchema>;
-      const email = body.email;
+      const email = body.email.toLowerCase().trim();
 
       const db = c.get("db") as DB;
 
-      const existing = await db
-        .select()
-        .from(waitlist)
-        .where(eq(waitlist.email, email.toLowerCase().trim()));
+      const result = await db
+        .insert(waitlist)
+        .values({
+          id: nanoid(),
+          email,
+        })
+        .onConflictDoNothing()
+        .returning({ id: waitlist.id });
 
-      if (existing.length > 0) {
+      if (result.length === 0) {
+        // Email already exists
         return c.json(
           {
             success: false,
@@ -35,11 +40,6 @@ waitlistRouter.post(
           400,
         );
       }
-
-      await db.insert(waitlist).values({
-        id: nanoid(),
-        email,
-      });
 
       return c.json(
         {
