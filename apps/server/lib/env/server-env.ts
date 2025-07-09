@@ -12,13 +12,15 @@ export const serverEnv = createEnv({
 
     FRONTEND_URL: z
       .string({ message: "The FRONTEND_URL environment variable is required." })
-      .url("FRONTEND_URL must be a valid URL (e.g., https://yourdomain.com)."),
+      .url("FRONTEND_URL must be a valid URL (e.g., https://yourdomain.com).")
+      .default("http://localhost:3000"),
 
     BACKEND_URL: z
       .string({ message: "The BACKEND_URL environment variable is required." })
       .url(
         "BACKEND_URL must be a valid URL (e.g., https://api.yourdomain.com)."
-      ),
+      )
+      .default("http://localhost:1284"),
 
     SERVER_PORT: z
       .string()
