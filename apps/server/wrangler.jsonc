@@ -8,7 +8,7 @@
   "assets": {
     "directory": "./dist"
   },
-  "routes": [{"pattern": "api.eight.photos/*", "custom_domain": true}],
+  "routes": [{"pattern": "api.eight.photos/", "custom_domain": true}],
   "env": {
     "development": {
       "vars": {
