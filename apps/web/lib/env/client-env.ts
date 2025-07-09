@@ -6,7 +6,7 @@ const clientEnvSchema = z.object({
 
 const clientEnv = {
   NEXT_PUBLIC_BACKEND_URL:
-    process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:1284",
+    process.env.NEXT_PUBLIC_BACKEND_URL
 };
 
 const _clientEnv = clientEnvSchema.safeParse(clientEnv);

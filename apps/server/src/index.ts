@@ -63,6 +63,10 @@ app.use("*", async (c, next) => {
 
 app.route("/api", routes);
 
+app.get("/", (c) => {
+  return c.text("Welcome to Eight!");
+});
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`🚀 Server starting on http://localhost:${port}`);
   serve({
