@@ -17,7 +17,8 @@
         "FRONTEND_URL": "http://localhost:3000",
         "NEXT_PUBLIC_BACKEND_URL": "http://localhost:1284",
         "NEXT_PUBLIC_FRONTEND_URL": "http://localhost:3000",
-        "NEXT_PUBLIC_CALLBACK_URL": "http://localhost:3000/app"
+        "NEXT_PUBLIC_CALLBACK_URL": "http://localhost:3000/app",
+        "DATABASE_URL": "postgres://postgres:postgres@localhost:5432/eight"
       },
       "hyperdrive": [
         {
@@ -34,7 +35,8 @@
         "FRONTEND_URL": "https://eight.photos",
         "NEXT_PUBLIC_BACKEND_URL": "https://api.eight.photos",
         "NEXT_PUBLIC_FRONTEND_URL": "https://eight.photos",
-        "NEXT_PUBLIC_CALLBACK_URL": "https://eight.photos/app"
+        "NEXT_PUBLIC_CALLBACK_URL": "https://eight.photos/app",
+        "DATABASE_URL": "postgres://postgres:postgres@localhost:5432/eight"
       },
       "hyperdrive": [
         {
