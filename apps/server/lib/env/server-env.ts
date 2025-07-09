@@ -6,7 +6,7 @@ export const serverEnv = createEnv({
     DATABASE_URL: z
       .string({ message: "The DATABASE_URL environment variable must be set." })
       .url(
-        "The value provided for DATABASE_URL is not a valid URL. Please check the format.",
+        "The value provided for DATABASE_URL is not a valid URL. Please check the format."
       ),
 
     FRONTEND_URL: z
@@ -16,7 +16,7 @@ export const serverEnv = createEnv({
     BACKEND_URL: z
       .string({ message: "The BACKEND_URL environment variable is required." })
       .url(
-        "BACKEND_URL must be a valid URL (e.g., https://api.yourdomain.com).",
+        "BACKEND_URL must be a valid URL (e.g., https://api.yourdomain.com)."
       ),
 
     SERVER_PORT: z
@@ -24,6 +24,7 @@ export const serverEnv = createEnv({
       .transform((val) => parseInt(val, 10))
       .pipe(z.number().min(1).max(65535))
       .default("1284"),
+    ENVIRONMENT: z.enum(["development", "production", "test"]),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

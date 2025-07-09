@@ -33,10 +33,13 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250708.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
+    "@types/node": "^20",
     "@types/pg": "^8.15.4",
     "@workspace/typescript-config": "workspace:*",
-    "tsx": "^4.7.1"
+    "tsx": "^4.7.1",
+    "wrangler": "^4.23.0"
   }
 }
