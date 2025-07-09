@@ -5,6 +5,9 @@
   "compatibility_date": "2025-07-08",
   "compatibility_flags": ["nodejs_compat"],
   "workers_dev": false,
+  "assets": {
+    "directory": "./dist"
+  },
   "routes": [{"pattern": "api.eight.photos/*", "custom_domain": true}],
   "env": {
     "development": {
