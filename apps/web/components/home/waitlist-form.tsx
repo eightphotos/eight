@@ -249,7 +249,7 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
         <span className="absolute left-0 size-2 animate-pulse rounded-full bg-green-600 blur-xs dark:bg-green-400" />
         <span className="text-gray-900 dark:text-white">
           {waitlist.isLoading ? (
-            "Loading count..."
+            "0 people already joined the waitlist"
           ) : (
             <>
               <NumberFlow value={waitlist.count} /> people already joined the waitlist

@@ -15,7 +15,7 @@ export function Hero() {
           alt="Hero lower section"
           fill
           style={{ objectFit: "cover" }}
-          className="w-full h-auto translate-y-2/4 md:translate-y-72 lg:translate-y-1/2"
+          className="w-full h-auto translate-y-1/2 md:translate-y-72 lg:translate-y-1/4"
           priority
         />
       </div>
@@ -47,6 +47,22 @@ export function Hero() {
               </div>
             </div>
             <WaitlistForm />
+            
+            {/* Preview Image Section */}
+            <div className="mx-auto w-full max-w-3xl mt-16">
+              <div className="border-border mx-auto w-full rounded-xl border bg-gray-50/5 p-2 backdrop-blur-xs sm:max-w-4xl sm:min-w-0 sm:translate-x-0">
+                <div className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-black to-[#7FBEE4] opacity-30 blur-[60px]" />
+                <Image
+                  src="/images/eight_preview.png"
+                  alt="Eight Preview"
+                  width={800}
+                  height={600}
+                  className="z-10 ml-0 h-auto w-full rounded-lg object-cover sm:mx-auto"
+                  unoptimized
+                  sizes="(max-width: 768px) 100vw, 80vw"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
