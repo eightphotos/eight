@@ -23,7 +23,7 @@
       "hyperdrive": [
         {
           "binding": "HYPERDRIVE",
-          "id": "828c4d4cd7f64a3f996acb3d4d8dfd87",
+          "id": "478f5766724c40bf868de46a8b8e9e99",
           "localConnectionString": "postgres://postgres:postgres@localhost:5432/eight"
         }
       ]
@@ -35,13 +35,12 @@
         "FRONTEND_URL": "https://eight.photos",
         "NEXT_PUBLIC_BACKEND_URL": "https://api.eight.photos",
         "NEXT_PUBLIC_FRONTEND_URL": "https://eight.photos",
-        "NEXT_PUBLIC_CALLBACK_URL": "https://eight.photos/app",
-        "DATABASE_URL": "postgres://postgres:postgres@localhost:5432/eight"
+        "NEXT_PUBLIC_CALLBACK_URL": "https://eight.photos/app"
       },
       "hyperdrive": [
         {
           "binding": "HYPERDRIVE",
-          "id": "828c4d4cd7f64a3f996acb3d4d8dfd87"
+          "id": "478f5766724c40bf868de46a8b8e9e99"
         }
       ]
     }
