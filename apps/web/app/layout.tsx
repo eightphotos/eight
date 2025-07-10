@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     "image search",
     "photo management",
     "visual search",
+    "photos you can actually search",
   ],
   creator: "Eight",
   publisher: "Eight",
