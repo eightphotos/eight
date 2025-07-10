@@ -41,10 +41,11 @@ export const metadata: Metadata = {
     siteName: "Eight",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "https://eight.photos/images/og-image.png",
         width: 1200,
         height: 630,
         alt: "Eight - Photos you can actually search",
+        type: "image/png",
       },
     ],
     locale: "en_US",
@@ -55,7 +56,20 @@ export const metadata: Metadata = {
     title: "Eight - Photos you can actually search",
     description:
       "Find your memories instantly with AI-powered photo search that actually understands what's in your pictures. Join the waitlist today.",
-    images: ["/images/og-image.png"], 
+    images: ["https://eight.photos/images/og-image.png"], 
+    creator: "@breathingcodes",
+    site: "@breathingcodes",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   formatDetection: {
     email: false,

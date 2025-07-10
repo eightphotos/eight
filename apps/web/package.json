@@ -8,6 +8,7 @@
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+    "deploy:production": "opennextjs-cloudflare build && opennextjs-cloudflare deploy -e production",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "dev": "next dev --turbopack",
     "pages:build": "npx @opennextjs/cloudflare build",
