@@ -30,7 +30,6 @@ export const metadata: Metadata = {
     "photo management",
     "visual search",
   ],
-  authors: [{ name: "Eight Team" }],
   creator: "Eight",
   publisher: "Eight",
   openGraph: {
