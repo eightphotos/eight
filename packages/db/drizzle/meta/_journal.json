@@ -15,6 +15,13 @@
       "when": 1752043065343,
       "tag": "0001_red_blur",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752112497597,
+      "tag": "0002_loving_wendigo",
+      "breakpoints": true
     }
   ]
 }

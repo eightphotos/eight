@@ -15,6 +15,7 @@ import { cn } from "@workspace/ui/lib/utils";
 const formSchema = z.object({
   email: z
     .string()
+    .min(1, "Email is required")
     .email("Invalid email. Please check the spelling and try again"),
 });
 
@@ -24,6 +25,7 @@ type FormSchema = z.infer<typeof formSchema>;
 type WaitlistResponse = {
   success: boolean;
   error?: string;
+  message?: string;
 };
 
 type WaitlistCountResponse = {
@@ -85,7 +87,7 @@ async function joinWaitlist(email: string): Promise<void> {
   const data = (await response.json()) as WaitlistResponse;
 
   if (!response.ok || !data.success) {
-    if (data.error === "Email already exists") {
+    if (data.error === "Email already exists in waitlist") {
       throw new Error("You're already on the waitlist!");
     }
     throw new Error(data.error || "Failed to join waitlist");
@@ -139,7 +141,7 @@ function useWaitlistCount() {
     gcTime: CACHE_DURATION * 2, // Keep in cache for double the duration
   });
 
-  const { mutate } = useMutation({
+  const mutation = useMutation({
     mutationFn: (email: string) => joinWaitlist(email),
     onSuccess: () => {
       toast.success(
@@ -158,6 +160,9 @@ function useWaitlistCount() {
       );
     },
     onError: (error) => {
+      // Enhanced error logging for development
+      console.error("Waitlist join error:", error);
+      
       const errorMessage =
         error instanceof Error
           ? error.message
@@ -166,7 +171,13 @@ function useWaitlistCount() {
     },
   });
 
-  return { count: query.data?.count ?? 0, mutate };
+  return { 
+    count: query.data?.count ?? 0, 
+    mutate: mutation.mutate,
+    isLoading: query.isLoading,
+    isSubmitting: mutation.isPending,
+    isError: query.isError || mutation.isError,
+  };
 }
 
 interface WaitlistFormProps {
@@ -174,7 +185,7 @@ interface WaitlistFormProps {
 }
 
 export function WaitlistForm({ className }: WaitlistFormProps) {
-  const { register, handleSubmit, reset } = useForm<FormSchema>({
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
@@ -183,48 +194,67 @@ export function WaitlistForm({ className }: WaitlistFormProps) {
   });
 
   const waitlist = useWaitlistCount();
+  const [hasJoined, setHasJoined] = useState(false);
 
   function handleJoinWaitlist({ email }: FormSchema) {
-    waitlist.mutate(email);
-    reset();
+    waitlist.mutate(email, {
+      onSuccess: () => {
+        reset(); 
+        setHasJoined(true);
+      },
+    });
   }
 
   return (
-    <div className={cn("max-w-lg mx-auto", className)}>
+    <div className={cn("mx-auto flex w-full max-w-3xl flex-col items-center justify-center gap-4", className)}>
       <form
-        className="space-y-4"
+        className="mx-auto flex w-full max-w-md flex-col gap-3 sm:flex-row"
         onSubmit={handleSubmit(handleJoinWaitlist, (errors) => {
           if (errors.email) {
             toast.error(errors.email.message);
           }
         })}
       >
-        <div className="flex flex-col sm:flex-row gap-3">
-          <div className="flex-1">
-            <Input
-              type="email"
-              placeholder="example@0.email"
-              className="h-12 px-6 text-base backdrop-blur-sm transition-all duration-300 bg-white/50"
-              {...register("email")}
-            />
-          </div>
-
-          <Button
-            type="submit"
-            className="h-12 px-8 font-semibold transition-all duration-300 relative overflow-hidden active:scale-95 text-white shadow-lg hover:shadow-xl sm:w-auto w-full bg-gray-900 hover:bg-gray-800"
-          >
-            Join Waitlist
-          </Button>
-        </div>
+        <Input
+          type="email"
+          placeholder="example@0.email"
+          className={cn(
+            "placeholder:text-muted-foreground h-11 w-full rounded-lg bg-white/50 px-4 text-base font-medium outline outline-neutral-200 backdrop-blur-3xl placeholder:font-medium md:text-base dark:bg-black/50",
+            errors.email && "border-red-500 focus:border-red-500"
+          )}
+          disabled={waitlist.isSubmitting || hasJoined}
+          {...register("email")}
+        />
+        
+        <Button
+          type="submit"
+          disabled={waitlist.isSubmitting || hasJoined}
+          className={cn(
+            "relative h-11 w-full cursor-pointer overflow-hidden rounded-lg pr-3 pl-4 text-base drop-shadow-[0_0_8px_rgba(0,0,0,0.3)] transition-all duration-300 before:absolute before:inset-0 before:translate-x-[-100%] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent before:transition-transform before:duration-1000 before:ease-in-out hover:drop-shadow-[0_0_12px_rgba(0,0,0,0.4)] hover:before:translate-x-[100%] sm:w-fit dark:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] dark:hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.4)]",
+            hasJoined && "bg-green-600 hover:bg-green-700"
+          )}
+        >
+          {waitlist.isSubmitting ? (
+            "Joining"
+          ) : hasJoined ? (
+            "Joined"
+          ) : (
+            "Join Waitlist"
+          )}
+        </Button>
       </form>
-      <div className="flex items-center justify-center gap-3 pt-4 text-gray-900 dark:text-white">
-        <div className="relative">
-          <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping opacity-75" />
-        </div>
-        <span className="text-sm dark:text-white">
-          <NumberFlow value={waitlist.count} /> people already joined the
-          waitlist
+      
+      <div className="relative mt-3 flex flex-row items-center justify-center gap-3 text-sm sm:text-base">
+        <span className="size-2 animate-pulse rounded-full bg-green-600 dark:bg-green-400" />
+        <span className="absolute left-0 size-2 animate-pulse rounded-full bg-green-600 blur-xs dark:bg-green-400" />
+        <span className="text-gray-900 dark:text-white">
+          {waitlist.isLoading ? (
+            "Loading count..."
+          ) : (
+            <>
+              <NumberFlow value={waitlist.count} /> people already joined the waitlist
+            </>
+          )}
         </span>
       </div>
     </div>

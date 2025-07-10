@@ -37,3 +37,7 @@ npm-debug.log*
 *.pem
 
 .open-next
+
+# Cloudflare Workers vars
+.dev.vars
+.wrangler

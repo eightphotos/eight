@@ -1,0 +1,1 @@
+ALTER TABLE "eight_waitlist" ALTER COLUMN "created_at" SET DEFAULT now();

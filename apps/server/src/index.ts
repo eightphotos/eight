@@ -18,12 +18,8 @@ export interface ReqVariables {
 const app = new Hono<{ Variables: ReqVariables; Bindings: Env }>();
 
 
-const dbCache = new Map<string, DB>();
 const getDb = (connString: string): DB => {
-  const cached = dbCache.get(connString);
-  if (cached) return cached;
   const { db } = createDb(connString);
-  dbCache.set(connString, db);
   return db;
 };
 
@@ -41,22 +37,42 @@ app.use(
 
 app.use("*", async (c, next) => {
   /*
-   * In development we rely on a local DATABASE_URL (loaded via ./env and validated by serverEnv).
-   * In production, Cloudflare provides a Hyperdrive binding whose connectionString we use instead.
+   * For Cloudflare Workers, prioritize HYPERDRIVE binding if available.
+   * Fall back to DATABASE_URL for local Node.js development.
    */
-  const connectionString =
-    process.env.NODE_ENV !== "production"
-      ? serverEnv.DATABASE_URL
-      : c.env.HYPERDRIVE.connectionString;
+  let connectionString: string | undefined;
+  
+  // Check if we're in Cloudflare Workers environment and have HYPERDRIVE binding
+  if (c.env && c.env.HYPERDRIVE && c.env.HYPERDRIVE.connectionString) {
+    connectionString = c.env.HYPERDRIVE.connectionString;
+    console.log("Using HYPERDRIVE connection for database");
+  } else if (process.env.DATABASE_URL) {
+    connectionString = process.env.DATABASE_URL;
+    console.log("Using DATABASE_URL for database connection");
+  } else {
+    // Try serverEnv as fallback
+    try {
+      connectionString = serverEnv.DATABASE_URL;
+      console.log("Using serverEnv DATABASE_URL for database connection");
+    } catch (error) {
+      console.error("Failed to load serverEnv:", error);
+    }
+  }
 
   if (!connectionString) {
     console.error("Database connection string is not defined.");
     return c.text("Internal Server Error", 500);
   }
 
-  const db = getDb(connectionString);
-  c.set("db", db);
-  await next();
+
+  try {
+    const db = getDb(connectionString);
+    c.set("db", db);
+    await next();
+  } catch (error) {
+    console.error("Database connection failed:", error);
+    return c.text("Database Connection Error", 500);
+  }
 });
 
 

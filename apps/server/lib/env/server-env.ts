@@ -4,11 +4,10 @@ import { z } from "zod";
 export const serverEnv = createEnv({
   server: {
     DATABASE_URL: z
-      .string()
+      .string({ message: "DATABASE_URL environment variable is required." })
       .url(
         "The value provided for DATABASE_URL is not a valid URL. Please check the format."
-      )
-      .optional(),
+      ),
 
     FRONTEND_URL: z
       .string({ message: "The FRONTEND_URL environment variable is required." })

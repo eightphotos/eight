@@ -8,8 +8,8 @@ export const waitlist = createTable("waitlist", {
   id: text("id").primaryKey(),
   email: text("email").notNull().unique(),
   createdAt: timestamp("created_at")
-    .$defaultFn(() => new Date())
-    .notNull(),
+    .notNull()
+    .defaultNow(),
 },
 );
 
