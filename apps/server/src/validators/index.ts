@@ -30,3 +30,9 @@ export const emailSchema = z.object({
       return true;
     }, "Please enter a valid email address and try again"),
 });
+
+export const sendMailSchema = z.object({
+	to: z.string().email(),
+	subject: z.string().min(1),
+	text: z.string().min(1),
+});

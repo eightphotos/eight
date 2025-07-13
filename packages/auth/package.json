@@ -1,0 +1,22 @@
+{
+  "name": "@eight/auth",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "main": "./src/auth.ts",
+  "scripts": {
+    "build": "tsc --project tsconfig.json"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/auth.ts",
+      "import": "./src/auth.ts"
+    }
+  },
+  "dependencies": {
+    "@eight/db": "workspace:*",
+    "axios": "^1.10.0",
+    "better-auth": "^1.2.12",
+    "typescript": "^5.8.3"
+  }
+}

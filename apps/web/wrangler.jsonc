@@ -16,7 +16,7 @@
         "NODE_ENV": "production",
         "NEXT_PUBLIC_BACKEND_URL": "https://api.eight.photos",
         "NEXT_PUBLIC_FRONTEND_URL": "https://eight.photos",
-        "NEXT_PUBLIC_CALLBACK_URL": "https://eight.photos/app"
+        "NEXT_PUBLIC_CALLBACK_URL": "https://eight.photos/gallery"
       },
       "r2_buckets": [
         {

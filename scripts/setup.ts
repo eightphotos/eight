@@ -30,7 +30,7 @@ FRONTEND_URL=http://localhost:3000
 # URLs for Next.js client side
 NEXT_PUBLIC_BACKEND_URL=http://localhost:1284
 NEXT_PUBLIC_FRONTEND_URL=http://localhost:3000
-NEXT_PUBLIC_CALLBACK_URL=http://localhost:3000/app
+NEXT_PUBLIC_CALLBACK_URL=http://localhost:3000/gallery
 
 # Database
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/eight

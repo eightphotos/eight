@@ -30,6 +30,15 @@ export const serverEnv = createEnv({
     ENVIRONMENT: z
       .enum(["development", "production", "test"])
       .default("development"),
+    GOOGLE_GENERATIVE_AI_API_KEY: z
+      .string({ message: "GOOGLE_GENERATIVE_AI_API_KEY is required for AI integrations." })
+      .min(1, "GOOGLE_GENERATIVE_AI_API_KEY cannot be empty"),
+    RESEND_API_KEY: z
+      .string({ message: "RESEND_API_KEY is required for email integrations." })
+      .min(1, "RESEND_API_KEY cannot be empty"),
+    EMAIL_FROM: z
+      .string({ message: "EMAIL_FROM is required for email integrations." })
+      .min(1, "EMAIL_FROM cannot be empty"),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

@@ -2,11 +2,14 @@ import { z } from "zod";
 
 const clientEnvSchema = z.object({
   NEXT_PUBLIC_BACKEND_URL: z.string().url(),
+  NEXT_PUBLIC_CALLBACK_URL: z.string().url(),
 });
 
 const clientEnv = {
   NEXT_PUBLIC_BACKEND_URL:
-    process.env.NEXT_PUBLIC_BACKEND_URL
+    process.env.NEXT_PUBLIC_BACKEND_URL,
+  NEXT_PUBLIC_CALLBACK_URL:
+    process.env.NEXT_PUBLIC_CALLBACK_URL,
 };
 
 const _clientEnv = clientEnvSchema.safeParse(clientEnv);

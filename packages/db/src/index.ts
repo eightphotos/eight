@@ -1,6 +1,6 @@
 import { drizzle } from 'drizzle-orm/postgres-js'
 import postgres, { type Sql } from 'postgres';
-import schema from "../schema.js";
+import schema from "../schema";
 
 
 // This implementation is a copy of the one done in Nibmus Storage. https://github.com/nimbusdotstorage/Nimbus/blob/main/packages/db/src/index.ts
